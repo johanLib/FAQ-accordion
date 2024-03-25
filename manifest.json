@@ -1,0 +1,10 @@
+{
+  "theme_color": "#f9f0ff",
+  "background_color": "#f9f0ff",
+  "display": "standalone",
+  "scope": "/",
+  "start_url": "/",
+  "name": "FAQ accordion card",
+  "short_name": "FAQ accordion card",
+  "description": "FAQ accordion Solution for Frontend Mentor"
+}

@@ -1,0 +1,100 @@
+@font-face {
+  font-family: 'Work Sans';
+  src: url('./assets/fonts/WorkSans-SemiBold.woff2') format('woff2'),
+    url('./assets/fonts/WorkSans-SemiBold.woff') format('woff');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Work Sans';
+  src: url('./assets/fonts/WorkSans-Regular.woff2') format('woff2'),
+    url('./assets/fonts/WorkSans-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Work Sans';
+  src: url('./assets/fonts/WorkSans-Bold.woff2') format('woff2'),
+    url('./assets/fonts/WorkSans-Bold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    font-family: "Work Sans", sans-serif;
+  }
+
+  .h-dynamic-screen {
+    min-height: 100vh;
+    min-height: 100dvh;
+  }
+
+  :is(a, button, input, textarea, select, details, summary):focus-visible {
+    outline: hsl(292, 16%, 49%) solid 0.25rem;
+    outline-offset: 0.25rem;
+  }
+
+  abbr {
+    text-decoration: none;
+  }
+
+  body::before {
+    /* I don't use simple background because I don't like the way it looks on mobile
+
+       You can use this instead:
+       background: url(assets/images/background-pattern-desktop.svg) no-repeat top/contain; */
+    content: "";
+    position: fixed;
+    width: 100vw;
+    height: 20rem;
+    max-height: 50vh;
+    background: url(assets/images/background-pattern-desktop.svg) no-repeat top/cover;
+    z-index: -1;
+    top: 0;
+  }
+
+  .py-summary {
+    margin-block: 1.0188rem 0.9rem;
+    padding-block: 0.575rem 0.575rem;
+  }
+}
+
+@layer components {
+  .content {
+    visibility: hidden;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 300ms ease-in-out, visibility 300ms ease-in-out, padding 300ms ease-in-out;
+  }
+
+  button[aria-expanded="true"]+.content {
+    visibility: visible;
+    max-height: 12.5rem;
+  }
+
+  button[aria-expanded="true"]::after {
+    content: url('./assets/images/icon-minus.svg');
+    width: 1.875rem;
+    height: 1.875rem;
+  }
+
+  button[aria-expanded="false"]::after {
+    content: url('./assets/images/icon-plus.svg');
+    width: 1.875rem;
+    height: 1.875rem;
+  }
+
+  button[aria-expanded="true"]+.content {
+    padding-bottom: 1.5rem;
+  }
+}
